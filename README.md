@@ -1,4 +1,4 @@
-# SFSymbolEnum
+# SFSymbolName
 
 A Swift package to have SF Symbols available as enum instead of strings.
 
@@ -7,11 +7,14 @@ A Swift package to have SF Symbols available as enum instead of strings.
 A list of all available symbols
 
 ```swift
+import SwiftUI
+import SFSymbolName
+
 struct SFSymbolsView: View {
   var body: some View {
     VStack {
       List(SFSymbolName.allCases) { symbol in
-        Label(symbol.rawValue, systemImage: symbol.rawValue)
+        Label(LocalizedStringKey(symbol.rawValue), symbol: symbol)
       }
     }
   }
@@ -22,12 +25,12 @@ struct SFSymbolsView: View {
 
 ## Advantages
 
-- Compiler error when you mistype a SFSymbol name
-- Autocompletion and suggestion for all SFSymbols:
+- Autocompletion all SFSymbols
+- Iterate through all available symbols
 
 <img src="Images/Example.completion.png" width="500" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;" />
 
-- Images are _available_ depending on os and version like this:
+- Images are _available_ depending on OS and version like this:
 
 <img src="Images/Example.availableError.png" width="500" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;" />
 
@@ -65,13 +68,9 @@ targets:
       - package: SFSymbolName
 ```
 
-## How it's done
+## Generate the names
 
-The code itself has been created with the `name_availablity.plist` inside the SF Symbols application.
-
-### Generate enum
-
-Swish script to generate the `enum`. Install [Swish](https://github.com/FullQueueDeveloper/Swish) from [HomeBrew](https://brew.sh), and run the `generate` script
+Swish script to generate the `enum` using the `name_availablity.plist` inside the SF Symbols application. Install [Swish](https://github.com/FullQueueDeveloper/Swish) from [HomeBrew](https://brew.sh), and run the `generate` script
 
 ```
 brew tap fullqueuedeveloper/swish/swish
