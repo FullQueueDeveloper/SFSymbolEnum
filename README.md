@@ -12,14 +12,14 @@ Label("Text",systemImage:.zlRectangleRoundedtopFill)
 Or to see a list of all available symbols
 
 ```swift
-struct SwiftUIView: View {
-    var body: some View {
-        VStack {
-            List(SFSymbol.allCases, id:\.name) { symbol in
-                Label(symbol.name, systemImage: symbol)
-            }
-        }
+struct SFSymbolsView: View {
+  var body: some View {
+    VStack {
+      List(SFSymbol.allCases) { symbol in
+        Label(symbol.name, sfsymbol: symbol)
+      }
     }
+  }
 }
 ```
 
@@ -38,58 +38,62 @@ struct SwiftUIView: View {
 
 ## Installation
 
-- Add the package to your project: Xcode->Add Package Dependency add this url: https://github.com/jollyjinx/SFSymbolEnum
+### Xcode
+
+- Add the package to your project: Xcode->Add Package Dependency add this url: https://github.com/FullQueueDeveloper/SFSymbolEnum
 - Import in files like this:
 
 ```swift
-     import SFSymbolEnum
+import SFSymbolEnum
+```
+
+### XcodeGen
+
+- Add the package to the top-level `packages` key
+
+```yaml
+packages:
+  SFSymbolEnum:
+    url: https://github.com/FullQueueDeveloper/SFSymbolEnum
+    from: 3.0.1
+```
+
+- Add the package to your target's dependencies list:
+
+```yaml
+targets:
+  App:
+    type: application
+    platform: iOS
+    sources: [App]
+    dependencies:
+      - package: SFSymbolEnum
 ```
 
 ## Usage
 
-functions that are using the _systemImage_ argument can be used as before, but instead with the dot notation.
+Functions that are using the _systemImage_ argument can be used as before, but instead with the dot notation.
 Symbol names translate to enums by replacing dots notation to camelcase and prefixing starting numbers with number.
 
 Examples:
 
 ```swift
-    Image(systemName: "arrow.down.left.circle.fill")
-    Image(systemName: "0.circle")
-    Image(systemName: "arrow.2.circlepath.circle")
+Image(systemName: "arrow.down.left.circle.fill")
+Image(systemName: "0.circle")
+Image(systemName: "arrow.2.circlepath.circle")
 ```
 
-becomes to:
+becomes:
 
 ```swift
-    Image(systemName: .arrowDownLeftCircleFill)
-    Image(systemName: .number0Circle)
-    Image(systemName: .arrow2CirclepathCircle)
+Image(sfsymbol: .arrowDownLeftCircleFill)
+Image(sfsymbol: .number0Circle)
+Image(sfsymbol: .arrow2CirclepathCircle)
 ```
 
 ## How it's done
 
-The code itself has been created with the `name_availablity.plist` inside the SF Symbols application and looks like this
-
-```swift
-public enum SFSymbol:String  // this enum will be generated
-{
-    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *) case number0Circle = "0.circle"
-    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *) case number0CircleFill = "0.circle.fill"
-...
-}
-
-extension SFSymbol:CaseIterable
-{
-    public static var allCases: [SFSymbol] {
-                var allCases: [SFSymbol] = []
-        if #available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *) { allCases.append(SFSymbol.number0Circle) }
-        if #available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *) { allCases.append(SFSymbol.number0CircleFill) }
-...
-    return allCases
-    }
-}
-
-```
+The code itself has been created with the `name_availablity.plist` inside the SF Symbols application.
 
 ### Generate enum
 

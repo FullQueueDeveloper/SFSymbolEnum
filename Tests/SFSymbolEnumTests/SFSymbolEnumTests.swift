@@ -1,11 +1,9 @@
-    import XCTest
-    @testable import SFSymbolEnum
+import XCTest
+@testable import SFSymbolEnum
 
-    final class SFSymbolEnumTests: XCTestCase {
-        func testExample() {
-            // This is an example of a functional test case.
-            // Use XCTAssert and related functions to verify your tests produce the correct
-            // results.
-            XCTAssertEqual(SFSymbolEnum().text, "Hello, World!")
-        }
-    }
+final class SFSymbolEnumTests: XCTestCase {
+  func testExample() {
+    XCTAssertEqual(SFSymbol.circle.rawValue, "circle")
+    XCTAssertEqual(SFSymbol.circleGrid3x3.rawValue, "circle.grid.3x3")
+  }
+}

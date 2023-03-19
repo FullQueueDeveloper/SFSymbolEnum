@@ -1,19 +1,18 @@
 import SwiftUI
 
-public extension SFSymbol {
-  var name: String { return self.rawValue }
+extension SFSymbol: Identifiable {
+  public var id: String { rawValue }
+  public var name: LocalizedStringKey { .init(rawValue) }
 }
 
-@available(iOS 13.0, macOS 11.0, tvOS 13.0, watchOS 6.0, *)
-public extension Image {
-
+extension Image {
   @available(iOS 13.0, macOS 11.0, tvOS 13.0, watchOS 6.0, *)
-  init(sfsymbol: SFSymbol) {
-    self = Image(systemName: sfsymbol.name)
+  public  init(sfsymbol: SFSymbol) {
+    self = Image(systemName: sfsymbol.rawValue)
   }
 }
 
 @available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 public func Label(_ title: LocalizedStringKey, sfsymbol: SFSymbol) -> Label<Text, Image> {
-  Label(title, systemImage: sfsymbol.name)
+  Label(title, systemImage: sfsymbol.rawValue)
 }
