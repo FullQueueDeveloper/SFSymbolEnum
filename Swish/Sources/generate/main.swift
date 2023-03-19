@@ -9,6 +9,6 @@ let outputContents = buildOutputContents(
   releaseYears: releaseYears)
 
 try outputContents.write(
-  toFile: "Sources/SFSymbolEnum/SFSymbolEnum.generated.swift",
+  toFile: "Sources/SFSymbolName/SFSymbolName.generated.swift",
   atomically: true,
   encoding: String.Encoding.utf8)

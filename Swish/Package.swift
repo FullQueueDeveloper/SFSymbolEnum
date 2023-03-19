@@ -3,13 +3,11 @@
 import PackageDescription
 
 let package = Package(
-    name: "SFSymbolEnum-Scripts",
+    name: "Scripts",
     platforms: [
       .macOS(.v12),
     ],
-    dependencies: [
-      
-    ],
+    dependencies: [],
     targets: [
       .executableTarget(
         name: "generate",

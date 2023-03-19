@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "SFSymbolEnum",
+  name: "SFSymbolName",
   platforms: [
     .iOS(.v13),
     .macOS(.v10_15),
@@ -13,16 +13,16 @@ let package = Package(
   ],
   products: [
     .library(
-      name: "SFSymbolEnum",
-      targets: ["SFSymbolEnum"]),
+      name: "SFSymbolName",
+      targets: ["SFSymbolName"]),
   ],
   dependencies: [],
   targets: [
     .target(
-      name: "SFSymbolEnum",
+      name: "SFSymbolName",
       dependencies: []),
     .testTarget(
-      name: "SFSymbolEnumTests",
-      dependencies: ["SFSymbolEnum"]),
+      name: "SFSymbolNameTests",
+      dependencies: ["SFSymbolName"]),
   ]
 )

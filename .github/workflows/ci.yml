@@ -28,3 +28,6 @@ jobs:
 
       - name: build for release
         run: swift build -c release
+
+      - name: test
+        run: swift test

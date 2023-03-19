@@ -1,22 +1,17 @@
 # SFSymbolEnum
 
-A swift package to have SF Symbols available as enum instead of verbatim strings.
+A Swift package to have SF Symbols available as enum instead of strings.
 
-You can write now:
+## Example
 
-```swift
-Image(systemImage:.person)
-Label("Text",systemImage:.zlRectangleRoundedtopFill)
-```
-
-Or to see a list of all available symbols
+A list of all available symbols
 
 ```swift
 struct SFSymbolsView: View {
   var body: some View {
     VStack {
-      List(SFSymbol.allCases) { symbol in
-        Label(symbol.name, sfsymbol: symbol)
+      List(SFSymbolName.allCases) { symbol in
+        Label(symbol.rawValue, systemImage: symbol.rawValue)
       }
     }
   }
@@ -40,7 +35,7 @@ struct SFSymbolsView: View {
 
 ### Xcode
 
-- Add the package to your project: Xcode->Add Package Dependency add this url: https://github.com/FullQueueDeveloper/SFSymbolEnum
+- Add the package to your project: Xcode->Add Package Dependency add this url: https://github.com/FullQueueDeveloper/SFSymbolName
 - Import in files like this:
 
 ```swift
@@ -54,7 +49,7 @@ import SFSymbolEnum
 ```yaml
 packages:
   SFSymbolEnum:
-    url: https://github.com/FullQueueDeveloper/SFSymbolEnum
+    url: https://github.com/FullQueueDeveloper/SFSymbolName
     from: 3.0.1
 ```
 
@@ -67,28 +62,7 @@ targets:
     platform: iOS
     sources: [App]
     dependencies:
-      - package: SFSymbolEnum
-```
-
-## Usage
-
-Functions that are using the _systemImage_ argument can be used as before, but instead with the dot notation.
-Symbol names translate to enums by replacing dots notation to camelcase and prefixing starting numbers with number.
-
-Examples:
-
-```swift
-Image(systemName: "arrow.down.left.circle.fill")
-Image(systemName: "0.circle")
-Image(systemName: "arrow.2.circlepath.circle")
-```
-
-becomes:
-
-```swift
-Image(sfsymbol: .arrowDownLeftCircleFill)
-Image(sfsymbol: .number0Circle)
-Image(sfsymbol: .arrow2CirclepathCircle)
+      - package: SFSymbolName
 ```
 
 ## How it's done
